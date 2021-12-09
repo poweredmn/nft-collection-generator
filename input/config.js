@@ -9,151 +9,204 @@ const endEditionAt = 3300;
 const editionSize = 3300;
 const raceWeights = [
   {
-    value: "skull",
+    value: "buha",
     from: 1,
     to: editionSize,
   },
 ];
 
 const races = {
-  skull: {
-    name: "Skull",
+  buha: {
+    name: "Buha",
     layers: [
       {
         name: "Background",
         elements: [
           {
             id: 0,
-            name: "Light blue",
-            path: `${dir}/1-background/LightBlue.png`,
+            name: "Blue",
+            path: `${dir}/1-background/Blue.png`,
             weight: 100,
           },
           {
             id: 1,
+            name: "Cyan",
+            path: `${dir}/1-background/Cyan.png`,
+            weight: 100,
+          },
+          {
+            id: 2,
             name: "Orange",
             path: `${dir}/1-background/Orange.png`,
-            weight: 80,
+            weight: 100,
+          },
+          {
+            id: 3,
+            name: "Purple",
+            path: `${dir}/1-background/Purple.png`,
+            weight: 100,
+          },
+          {
+            id: 4,
+            name: "Red",
+            path: `${dir}/1-background/Red.png`,
+            weight: 100,
           },
         ],
         position: { x: 0, y: 0 },
         size: { width: width, height: height },
       },
       {
-        name: "Suit",
+        name: "Body",
         elements: [
           {
             id: 0,
-            name: "Regular",
-            path: `${dir}/2-suit/Regular.png`,
-            weight: 100,
+            name: "Blue",
+            path: `${dir}/2-body/Blue.png`,
+            weight: 50,
           },
           {
             id: 1,
+            name: "Gray",
+            path: `${dir}/2-body/Gray.png`,
+            weight: 100,
+          },
+          {
+            id: 2,
             name: "Orange",
-            path: `${dir}/2-suit/Orange.png`,
-            weight: 20,
+            path: `${dir}/2-body/Orange.png`,
+            weight: 100,
+          },
+          {
+            id: 3,
+            name: "Red",
+            path: `${dir}/2-body/Red.png`,
+            weight: 100,
           },
         ],
         position: { x: 0, y: 0 },
         size: { width: width, height: height },
       },
       {
-        name: "Shoulder",
+        name: "Shirt",
         elements: [
           {
             id: 0,
-            name: "LunaFlag",
-            path: `${dir}/3-shoulder/LunaFlag.png`,
+            name: "Shirt-1",
+            path: `${dir}/3-shirt/Shirt-1.png`,
             weight: 100,
           },
           {
             id: 1,
-            name: "USA",
-            path: `${dir}/3-shoulder/USA.png`,
-            weight: 90,
+            name: "Shirt-2",
+            path: `${dir}/3-shirt/Shirt-2.png`,
+            weight: 50,
+          },
+          {
+            id: 2,
+            name: "Shirt-3",
+            path: `${dir}/3-shirt/Shirt-3.png`,
+            weight: 50,
+          },
+          {
+            id: 3,
+            name: "Shirt-4",
+            path: `${dir}/3-shirt/Shirt-4.png`,
+            weight: 100,
           },
         ],
         position: { x: 0, y: 0 },
         size: { width: width, height: height },
       },
       {
-        name: "Pin",
+        name: "Pants",
         elements: [
           {
             id: 0,
-            name: "Smiley",
-            path: `${dir}/4-pin/Smiley.png`,
+            name: "Pants-1",
+            path: `${dir}/4-pants/Pants-1.png`,
             weight: 100,
           },
           {
             id: 1,
-            name: "LunaBluePin",
-            path: `${dir}/4-pin/LunaBluePin.png`,
-            weight: 90,
+            name: "Pants-2",
+            path: `${dir}/4-pants/Pants-2.png`,
+            weight: 50,
           },
-        ],
-        position: { x: 0, y: 0 },
-        size: { width: width, height: height },
-      },
-      {
-        name: "Race",
-        elements: [
           {
-            id: 0,
-            name: "Skull",
-            path: `${dir}/5-skin/Skull.png`,
+            id: 2,
+            name: "Pants-3",
+            path: `${dir}/4-pants/Pants-3.png`,
             weight: 100,
           },
-        ],
-        position: { x: 0, y: 0 },
-        size: { width: width, height: height },
-      },
-      {
-        name: "Facial hair",
-        elements: [
           {
-            id: 0,
-            name: "No facial hair",
-            path: `${dir}/6-facial-hair/NoFacialHair.png`,
+            id: 3,
+            name: "Pants-4",
+            path: `${dir}/4-pants/Pants-4.png`,
             weight: 100,
           },
+          
         ],
         position: { x: 0, y: 0 },
         size: { width: width, height: height },
       },
       {
-        name: "Mask",
+        name: "Sneaker",
         elements: [
           {
             id: 0,
-            name: "No mask",
-            path: `${dir}/7-mask/NoMask.png`,
+            name: "Sneaker-1",
+            path: `${dir}/5-sneaker/Sneaker-1.png`,
             weight: 100,
           },
           {
             id: 1,
-            name: "Medical",
-            path: `${dir}/7-mask/mask.png`,
-            weight: 5,
+            name: "Sneaker-2",
+            path: `${dir}/5-sneaker/Sneaker-2.png`,
+            weight: 100,
+          },
+          {
+            id: 2,
+            name: "Sneaker-3",
+            path: `${dir}/5-sneaker/Sneaker-3.png`,
+            weight: 100,
+          },
+          {
+            id: 3,
+            name: "Sneaker-4",
+            path: `${dir}/5-sneaker/Sneaker-4.png`,
+            weight: 100,
           },
         ],
         position: { x: 0, y: 0 },
         size: { width: width, height: height },
       },
       {
-        name: "Hair",
+        name: "Hat",
         elements: [
           {
             id: 0,
-            name: "Blonde bun",
-            path: `${dir}/8-hair/BlondeBun.png`,
+            name: "Hat-1",
+            path: `${dir}/6-hat/Hat-1.png`,
             weight: 100,
           },
           {
             id: 1,
-            name: "Pink",
-            path: `${dir}/8-hair/Pink.png`,
-            weight: 91,
+            name: "Hat-2",
+            path: `${dir}/6-hat/Hat-2.png`,
+            weight: 100,
+          },
+          {
+            id: 2,
+            name: "Hat-3",
+            path: `${dir}/6-hat/Hat-3.png`,
+            weight: 100,
+          },
+          {
+            id: 3,
+            name: "Hat-4",
+            path: `${dir}/6-hat/Hat-4.png`,
+            weight: 100,
           },
         ],
         position: { x: 0, y: 0 },
@@ -164,21 +217,26 @@ const races = {
         elements: [
           {
             id: 0,
-            name: "No accessories",
-            path: `${dir}/9-accessories/NoAcc.png`,
+            name: "Accessories-1",
+            path: `${dir}/7-accessories/Accessories-1.png`,
             weight: 100,
           },
-        ],
-        position: { x: 0, y: 0 },
-        size: { width: width, height: height },
-      },
-      {
-        name: "Headwear",
-        elements: [
           {
-            id: 0,
-            name: "Glass dome",
-            path: `${dir}/10-headwear/GlassDome.png`,
+            id: 1,
+            name: "Accessories-2",
+            path: `${dir}/7-accessories/Accessories-2.png`,
+            weight: 100,
+          },
+          {
+            id: 2,
+            name: "Accessories-3",
+            path: `${dir}/7-accessories/Accessories-3.png`,
+            weight: 100,
+          },
+          {
+            id: 3,
+            name: "Accessories-4",
+            path: `${dir}/7-accessories/Accessories-4.png`,
             weight: 100,
           },
         ],
