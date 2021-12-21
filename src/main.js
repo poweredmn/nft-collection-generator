@@ -80,9 +80,8 @@ const buildSetup = () => {
   fs.mkdirSync(buildDir);
 };
 
-const saveLayer = (_canvas, _edition, _namegenerator) => {
+const saveLayer = (_canvas, _edition) => {
   //fs.writeFileSync(`${buildDir}/${_edition}.png`, _canvas.toBuffer("image/png"));
-  //fs.writeFileSync(`${buildDir}/${_edition},${_namegenerator}.png`, _canvas.toBuffer("image/png"));
 };
 
 const addMetadata = _edition => {
@@ -95,14 +94,12 @@ const addMetadata = _edition => {
     attributes: attributes,
   };
   fs.writeFileSync(`${buildDir}/${_edition}${nameGenerator}.png`, canvas.toBuffer("image/png"));
-  //console.log(nameGenerator);
+  
   metadata.push(tempMetadata);
+  nameGenerator = '';
   attributes = [];
   hash = [];
   decodedHash = [];
-  nameGenerator = '';
-  normal_rare = 10;
-  super_rare = 20;
 };
 
 const addAttributes = (_element, _layer) => {
@@ -113,7 +110,6 @@ const addAttributes = (_element, _layer) => {
     rarity: _element.rarity,
   };
   attributes.push(tempAttr);
-  
   hash.push(_layer.id);
   hash.push(_element.id);
   decodedHash.push({ [_layer.id]: _element.id });
@@ -121,15 +117,13 @@ const addAttributes = (_element, _layer) => {
 
 const drawLayer = async (_layer, _edition) => {
   const rand = Math.random();
-  
   let element =
     _layer.elements[Math.floor(rand * _layer.number)] ? _layer.elements[Math.floor(rand * _layer.number)] : null;
   if (element) {
     addAttributes(element, _layer);
-    
     const image = await loadImage(`${_layer.location}${element.fileName}`);
     nameGenerator = nameGenerator + ',' + _layer.elements[Math.floor(rand * _layer.number)].name;
-    
+
     ctx.drawImage(
       image,
       _layer.position.x,
@@ -137,35 +131,35 @@ const drawLayer = async (_layer, _edition) => {
       _layer.size.width,
       _layer.size.height
     );
-    saveLayer(canvas, _edition, nameGenerator);
+    saveLayer(canvas, _edition);
   }
 };
 
 const createFiles = async edition => {
-  
   const layers = layersSetup(layersOrder);
-  let numDupes = 0;
-  for (let i = 1; i <= edition; i++) {
-    await layers.forEach(async (layer) => {
-      await drawLayer(layer, i);
-    });
 
-    let key = hash.toString();
-    if (Exists.has(key)) {
-      console.log(
-        `Duplicate creation for edition ${i}. Same as edition ${Exists.get(
-          key
-        )}`
-      );
-      numDupes++;
-      if (numDupes > edition) break; //prevents infinite loop if no more unique items can be created
-      i--;
-    } else {
-      Exists.set(key, i);
-      addMetadata(i);
-      console.log("Creating edition " + i);
-    }
-  }
+  let numDupes = 0;
+ for (let i = 1; i <= edition; i++) {
+   await layers.forEach(async (layer) => {
+     await drawLayer(layer, i);
+   });
+
+   let key = hash.toString();
+   if (Exists.has(key)) {
+     console.log(
+       `Duplicate creation for edition ${i}. Same as edition ${Exists.get(
+         key
+       )}`
+     );
+     numDupes++;
+     if (numDupes > edition) break; //prevents infinite loop if no more unique items can be created
+     i--;
+   } else {
+     Exists.set(key, i);
+     addMetadata(i);
+     console.log("Creating edition " + i);
+   }
+ }
 };
 
 const createMetaData = () => {
